@@ -1,12 +1,24 @@
 language: java
 jdk: openjdk11
 
+env:
+  global:
+    secure: "NLAXdPV1aS2H8iahZSB9v+ha0RFkFV5sDLxzN+RZ2h//03f/bcpWeKQo9tPZ+zCH6JO/TXLS7Ax1fTpSyNeApXqW8v0AwUUiYQuGMk+7q2sEin/vcgr2/2l//t1z9R781FOynGJUn9BJQIEWQGFw/piIABU++BmdMbTzFbucJU3ICmVJ2ktKQ5vWSPyRJ/pipKhpHDB0bilFuLq7uyDRu4Kt2NaalgN0GPAgaIHbnnQZlYnVZlZgzV/PY7Eg4hW9LQzAMnVYg09ibbXvDAt5QsJ4aD1gbHGTdgau9N0lVgvDOr7zP1whzcDTxdhVXUDvgOH3/0EN01ivGhAs395sbcal79+qPrzo2POfveMa07MIMrlObuXBUVkfSLSZB6L5pcdgERg/SUVfbEF1T0buAMT3f6Z+2/3LM7+DVrcHEgRA4LJoxyDRjF98es8Ozyia6G/GpXFEPCOXrabXp33hm6Tl/8tWbgDVdNsRkc4LSRMWfNRlV+1FjqXUcbsgh1pBQ6m67IfsmroM4I+sjd8hU9BMqMd4HmRFqhIBtR3wDnLXVKWYRUBavF4/PYCJ1CodNIrPdIrYNm7Vare1o4jz1i74ZrPCwdTHnEZyQ4Pn0EzmIk0kOeKKoLm5a2tGUmcocnmyV3HwNDKNdkJHAouu4E8jZmgzZ2aL+Es/1MKL918="
+
+addons:
+  sonarcloud:
+    organization: "meinjens-github"
+    token:
+      secure: $SONARCLOUD_TOKEN
+
 before_install:
   - chmod +x mvnw
 
 script:
   - ./mvnw clean install -B
+  - ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 
 cache:
   directories:
     - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
