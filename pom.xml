@@ -16,7 +16,7 @@
 	<description>Provide services for campaigns</description>
 
 	<properties>
-		<java.version>12</java.version>
+		<java.version>11</java.version>
 		<docker.image.prefix>meemo</docker.image.prefix>
 
 		<json-schema-validator.version>3.3.0</json-schema-validator.version>
