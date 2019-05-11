@@ -1,0 +1,64 @@
+openapi: 3.0.2
+servers:
+  - url: 'http://localhost:8080/v1'
+info:
+  description: >-
+    Campaign API
+  version: 1.0.0
+  title: Campaign Service
+  contact:
+    email: mail@jensmeinecke.de
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: campaign
+    description: Operations about campaign
+paths:
+  /campaigns:
+    get:
+      summary: 'Get list of campaigns'
+      description: ''
+      parameters: []
+      operationId: getCampaigns
+      tags:
+        - campaign
+      responses:
+        default:
+          $ref: '#/components/responses/CampaignGetResponse'
+
+components:
+  responses:
+    CampaignGetResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Campaign'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+    Campaign:
+      type: object
+      properties:
+        id:
+          type: string
+          description: unique campaign id
+        name:
+          type: string
+          description: name of the campaign
+
+  securitySchemes: {}
+  links: {}
+  callbacks: {}
+security: []
