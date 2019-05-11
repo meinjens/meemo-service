@@ -22,8 +22,10 @@
 		<json-schema-validator.version>3.3.0</json-schema-validator.version>
 		<swagger-annotations.version>1.5.22</swagger-annotations.version>
 
-		<plugin.openapi-generator.version>3.3.4</plugin.openapi-generator.version>
-		<plugin.dockerfile.version>1.4.9</plugin.dockerfile.version>
+		<maven-openapi-generator-plugin.version>3.3.4</maven-openapi-generator-plugin.version>
+		<maven-dockerfile-plugin.version>1.4.9</maven-dockerfile-plugin.version>
+		<maven-sonar-plugin.version>3.3.0.603</maven-sonar-plugin.version>
+		<maven-jacoco-plugin.version>0.8.4</maven-jacoco-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -87,7 +89,7 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>${plugin.openapi-generator.version}</version>
+				<version>${maven-openapi-generator-plugin.version}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -138,11 +140,92 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>${plugin.dockerfile.version}</version>
+				<version>${maven-dockerfile-plugin.version}</version>
 				<configuration>
 					<repository>${docker.image.prefix}/${project.artifactId}</repository>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>${maven-sonar-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${maven-jacoco-plugin.version}</version>
+				<configuration>
+					<excludes>
+						<exclude>com/sivalabs/jblogger/entities/*</exclude>
+						<exclude>com/sivalabs/jblogger/domain/*</exclude>
+						<exclude>com/sivalabs/jblogger/exceptions/*</exclude>
+						<exclude>com/sivalabs/jblogger/config/*</exclude>
+						<exclude>com/sivalabs/jblogger/*Application</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-prepare-agent-integration</id>
+						<goals>
+							<goal>prepare-agent-integration</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-report-integration</id>
+						<goals>
+							<goal>report-integration</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-check</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<!-- implementation is needed only for Maven 2 -->
+								<rule implementation="org.jacoco.maven.RuleConfiguration">
+									<element>BUNDLE</element>
+									<limits>
+										<!-- implementation is needed only for Maven 2 -->
+										<limit implementation="org.jacoco.report.check.Limit">
+											<counter>COMPLEXITY</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.10</minimum>
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-integration-test</id>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
