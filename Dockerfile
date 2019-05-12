@@ -1,6 +1,6 @@
 FROM adoptopenjdk/openjdk11:jdk-11.0.3_7-alpine
 
-ADD ["target/meemo.jar", "/app/app.jar"]
+ADD ["target/meemo-service.jar", "/app/app.jar"]
 
 ENV JAVA_OPTS="-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n"
 
