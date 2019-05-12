@@ -10,14 +10,14 @@
 	</parent>
 
 	<groupId>meemo</groupId>
-	<artifactId>meemo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>meemo-service</artifactId>
+	<version>0.0.1</version>
 	<name>meemo-service</name>
 	<description>Provide services for campaigns</description>
 
 	<properties>
 		<java.version>11</java.version>
-		<docker.image.prefix>meemo</docker.image.prefix>
+		<docker.image.prefix>meinjens</docker.image.prefix>
 		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco</sonar.coverage.jacoco.xmlReportPaths>
 
 		<json-schema-validator.version>3.3.0</json-schema-validator.version>
@@ -227,7 +227,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
 

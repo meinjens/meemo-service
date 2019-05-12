@@ -1,4 +1,4 @@
-Meemo
-=====
+Meemo Service
+=============
 
 Some kind of software - you will see
