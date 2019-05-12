@@ -18,6 +18,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<docker.image.prefix>meemo</docker.image.prefix>
+		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco</sonar.coverage.jacoco.xmlReportPaths>
 
 		<json-schema-validator.version>3.3.0</json-schema-validator.version>
 		<swagger-annotations.version>1.5.22</swagger-annotations.version>
