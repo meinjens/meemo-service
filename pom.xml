@@ -159,11 +159,7 @@
 				<version>${maven-jacoco-plugin.version}</version>
 				<configuration>
 					<excludes>
-						<exclude>com/sivalabs/jblogger/entities/*</exclude>
-						<exclude>com/sivalabs/jblogger/domain/*</exclude>
-						<exclude>com/sivalabs/jblogger/exceptions/*</exclude>
-						<exclude>com/sivalabs/jblogger/config/*</exclude>
-						<exclude>com/sivalabs/jblogger/*Application</exclude>
+						<exclude>meemo/campaign/service/MeemoServiceApplication</exclude>
 					</excludes>
 				</configuration>
 				<executions>
