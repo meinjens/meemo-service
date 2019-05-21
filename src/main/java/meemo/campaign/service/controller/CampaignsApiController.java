@@ -2,7 +2,9 @@ package meemo.campaign.service.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import meemo.api.CampaignApi;
+import meemo.campaign.service.interactor.FetchCampaign;
 import meemo.model.Campaign;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,9 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/v1")
 @Slf4j
 public class CampaignsApiController implements CampaignApi {
+
+    @Autowired
+    private FetchCampaign fetchCampaign;
 
     @Override
     public Mono<ResponseEntity<Flux<Campaign>>> getCampaigns(ServerWebExchange exchange) {

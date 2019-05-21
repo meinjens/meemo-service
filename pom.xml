@@ -17,6 +17,8 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<docker.image.prefix>meinjens</docker.image.prefix>
 
 		<json-schema-validator.version>3.3.0</json-schema-validator.version>
