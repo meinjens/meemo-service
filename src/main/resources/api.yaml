@@ -12,16 +12,21 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
-  - name: campaign
+  - name: campaigns
     description: Operations about campaign
-  - name: item
+  - name: items
     description: Operations about items of a campaign
+  - name: versions
+    description: Operations about versions of items
 
 paths:
   /campaigns:
     get:
       summary: 'Get list of campaigns'
       description: ''
+      operationId: getCampaigns
+      tags:
+        - campaigns
       parameters:
         - name: limit
           in: query
@@ -30,9 +35,6 @@ paths:
           schema:
             type: integer
             format: int32
-      operationId: getCampaigns
-      tags:
-        - campaign
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -41,7 +43,7 @@ paths:
       description: ''
       operationId: createCampaign
       tags:
-        - campaign
+        - campaigns
       requestBody:
         description: Campaign to create
         $ref: '#/components/requestBodies/CampaignCreateRequest'
@@ -55,6 +57,9 @@ paths:
     get:
       summary: 'Get campaign details'
       description: ''
+      operationId: getCampaign
+      tags:
+        - campaigns
       parameters:
         - name: campaignId
           in: path
@@ -62,15 +67,15 @@ paths:
           required: true
           schema:
             type: string
-      operationId: getCampaign
-      tags:
-        - campaign
       responses:
         default:
           $ref: '#/components/responses/CampaignGetResponse'
     put:
       summary: 'Update campaign details'
       description: ''
+      operationId: updateCampaign
+      tags:
+        - campaigns
       parameters:
         - name: campaignId
           in: path
@@ -78,15 +83,15 @@ paths:
           required: true
           schema:
             type: string
-      operationId: updateCampaign
-      tags:
-        - campaign
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
     delete:
       summary: 'Delete campaign'
       description: ''
+      operationId: removeCampaign
+      tags:
+        - campaigns
       parameters:
         - name: campaignId
           in: path
@@ -94,9 +99,23 @@ paths:
           required: true
           schema:
             type: string
-      operationId: removeCampaign
+      responses:
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /campaigns/{campaignId}/duplicate:
+    post:
+      summary: 'Duplicate campaign with all its data'
+      description: ''
+      operationId: duplicateCampaign
       tags:
-        - campaign
+        - campaigns
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -104,6 +123,9 @@ paths:
     post:
       summary: 'Move campaign to archive'
       description: ''
+      operationId: archiveCampaign
+      tags:
+        - campaigns
       parameters:
         - name: campaignId
           in: path
@@ -111,9 +133,6 @@ paths:
           required: true
           schema:
             type: string
-      operationId: archiveCampaign
-      tags:
-        - campaign
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -121,6 +140,9 @@ paths:
     post:
       summary: 'Unarchive campaign'
       description: ''
+      operationId: unarchiveCampaign
+      tags:
+        - campaigns
       parameters:
         - name: campaignId
           in: path
@@ -128,9 +150,6 @@ paths:
           required: true
           schema:
             type: string
-      operationId: unarchiveCampaign
-      tags:
-        - campaign
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
@@ -139,8 +158,9 @@ paths:
     get:
       summary: 'Get list of campaign items'
       description: ''
+      operationId: getItems
       tags:
-        - item
+        - items
       parameters:
         - name: campaignId
           in: path
@@ -148,16 +168,15 @@ paths:
           required: true
           schema:
             type: string
-      operationId: getItems
       responses:
         default:
           $ref: '#/components/responses/ErrorResponse'
     post:
       summary: 'Create campaign item'
       description: ''
-      tags:
-        - item
       operationId: createItem
+      tags:
+        - items
       parameters:
         - name: campaignId
           in: path
@@ -174,9 +193,134 @@ paths:
         default:
           description: Unexpected error
           $ref: '#/components/responses/ErrorResponse'
+  /campaigns/{campaignId}/items/{itemId}:
+    get:
+      summary: 'Get campaign item details'
+      description: ''
+      operationId: getItem
+      tags:
+        - items
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
+        - name: itemId
+          in: path
+          description: Unique item identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    put:
+      summary: 'Update campaign item details'
+      description: ''
+      operationId: updateItem
+      tags:
+        - items
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
+        - name: itemId
+          in: path
+          description: Unique item identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    delete:
+      summary: 'Delete campaign item details'
+      description: 'Removes an campaign from a campaign with all its data (voting, feedback etc.)'
+      operationId: removeItem
+      tags:
+        - items
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
+        - name: itemId
+          in: path
+          description: Unique item identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Campaign item deleted (null response).
+        '404':
+          description: Campaign item not found.
+        default:
+          $ref: '#/components/responses/ErrorResponse'
 
-
-
+  /campaigns/{campaignId}/items/{itemId}/versions:
+    get:
+      summary: 'Get list of campaign items'
+      description: ''
+      operationId: getVersions
+      tags:
+        - versions
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
+        - name: itemId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    post:
+      summary: 'Create campaign item version'
+      description: ''
+      operationId: createVersion
+      tags:
+        - versions
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
+        - name: itemId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: Item to create
+        $ref: '#/components/requestBodies/VersionCreateRequest'
+      responses:
+        '201':
+          description: Campaign item version created (null response).
+        default:
+          description: Unexpected error
+          $ref: '#/components/responses/ErrorResponse'
 
 components:
   requestBodies:
@@ -189,11 +333,19 @@ components:
             $ref: '#/components/schemas/Campaign'
     ItemCreateRequest:
       description: Create campaign item
-      required: trie
+      required: true
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Item'
+    VersionCreateRequest:
+      description: Create campaign item version
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Version'
+
   responses:
     CampaignGetResponse:
       description: Campaign details
@@ -232,20 +384,30 @@ components:
       properties:
         id:
           type: string
-          description: unique campaign id
+          description: Unique campaign id
         name:
           type: string
-          description: name of the campaign
+          description: Name of the campaign
     Item:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          description: unique item identifier
+          description: Unique item identifier
         name:
           type: string
-          description: caption of the campaign item
+          description: Caption of the campaign item
+    Version:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique version identifier
+        comment:
+          type: string
+          description: Comment on this version
 
   securitySchemes: {}
   links: {}
