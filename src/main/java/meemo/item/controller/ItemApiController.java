@@ -1,4 +1,4 @@
-package meemo.campaign.service.controller;
+package meemo.item.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import meemo.api.ItemsApi;

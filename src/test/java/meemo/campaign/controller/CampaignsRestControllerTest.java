@@ -1,4 +1,4 @@
-package meemo.campaign.service.controller;
+package meemo.campaign.controller;
 
 import io.restassured.http.ContentType;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class CampaignsApiControllerTest {
+public class CampaignsRestControllerTest {
 
     @LocalServerPort
     int randomServerPort;

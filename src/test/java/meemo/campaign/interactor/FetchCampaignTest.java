@@ -1,6 +1,7 @@
-package meemo.campaign.service.interactor;
+package meemo.campaign.interactor;
 
-import meemo.campaign.service.gateway.CampaignPersistence;
+import meemo.campaign.gateway.CampaignPersistence;
+import meemo.campaign.interactor.FetchCampaign;
 import meemo.model.Campaign;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class FetchCampaignTest {
 
     @Before
     public void setUp() throws Exception {
-        fetchCampaign = new FetchCampaign();
+        fetchCampaign = new FetchCampaign(campaignPersistence);
         fetchCampaign.setCampaignPersistence(campaignPersistence);
     }
 
@@ -33,18 +34,16 @@ public class FetchCampaignTest {
     public void givenGatewayHasNothing_whenFetchCampaign_shouldReturnEmptyList() {
         when(campaignPersistence.fetchList()).thenReturn(Collections.emptyList());
 
-        List<Campaign> campaignList = fetchCampaign.getList();
+        List<Campaign> campaignList = fetchCampaign.fetchList();
 
         assertThat(campaignList.size()).isEqualTo(0);
     }
 
     @Test
     public void givenGatewayHasAnElement_whenFetchCampaign_shouldReturnListWithCampaign() {
-        List<Campaign> aCampaignList = new ArrayList<>();
-        aCampaignList.add(new Campaign());
-        when(campaignPersistence.fetchList()).thenReturn(aCampaignList);
+        when(campaignPersistence.fetchList()).thenReturn(List.of(new Campaign()));
 
-        List<Campaign> campaignList = fetchCampaign.getList();
+        List<Campaign> campaignList = fetchCampaign.fetchList();
 
         assertThat(campaignList.size()).isGreaterThan(0);
     }

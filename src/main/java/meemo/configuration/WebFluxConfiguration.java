@@ -1,4 +1,4 @@
-package meemo.campaign.service.configuration;
+package meemo.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.ResourceHandlerRegistry;

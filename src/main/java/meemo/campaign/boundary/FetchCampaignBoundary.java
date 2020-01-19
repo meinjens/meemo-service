@@ -1,9 +1,9 @@
-package meemo.campaign.service.gateway;
+package meemo.campaign.boundary;
 
 import meemo.model.Campaign;
 
 import java.util.List;
 
-public interface CampaignPersistence {
+public interface FetchCampaignBoundary {
     List<Campaign> fetchList();
 }

@@ -1,14 +1,11 @@
-package meemo.campaign.service;
+package meemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.reactive.config.EnableWebFlux;
 
-import javax.annotation.Generated;
-
 @EnableWebFlux
-@SpringBootApplication(scanBasePackages = {"meemo.campaign.service"})
-@Generated(value="Spring Initializr")
+@SpringBootApplication(scanBasePackages = {"meemo"})
 public class MeemoServiceApplication {
 
 	public static void main(String[] args) {

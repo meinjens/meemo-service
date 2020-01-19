@@ -1,22 +1,29 @@
-package meemo.campaign.service.interactor;
+package meemo.campaign.interactor;
 
-import meemo.campaign.service.boundary.FetchCampaignBoundary;
-import meemo.campaign.service.gateway.CampaignPersistence;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import meemo.campaign.boundary.FetchCampaignBoundary;
+import meemo.campaign.gateway.CampaignPersistence;
 import meemo.model.Campaign;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class FetchCampaign implements FetchCampaignBoundary {
 
+    @NonNull
     private CampaignPersistence campaignPersistence;
 
-    public List<Campaign> getList() {
+    @Override
+    public List<Campaign> fetchList() {
         return campaignPersistence.fetchList();
     }
+
 
     public void setCampaignPersistence(CampaignPersistence campaignPersistence) {
         this.campaignPersistence = campaignPersistence;
     }
+
 }

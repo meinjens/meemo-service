@@ -2,12 +2,14 @@ openapi: 3.0.2
 servers:
   - url: 'http://localhost:8080/v1'
 info:
+  title: Meemo Service API
   description: >-
-    Campaign API
+    Services controlling meemo
   version: 1.0.0
-  title: Campaign Service
   contact:
+    name: Jens Meinecke
     email: mail@jensmeinecke.de
+    url: https://jensmeinecke.de
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
@@ -270,7 +272,7 @@ paths:
 
   /campaigns/{campaignId}/items/{itemId}/versions:
     get:
-      summary: 'Get list of campaign items'
+      summary: 'Get all versions of a campaign item'
       description: ''
       operationId: getVersions
       tags:
@@ -321,6 +323,98 @@ paths:
         default:
           description: Unexpected error
           $ref: '#/components/responses/ErrorResponse'
+  /campaigns/{campaignId}/items/{itemId}/versions/{version}:
+    get:
+      summary: 'Get a version of a campaign item'
+      description: ''
+      operationId: getVersion
+      tags:
+        - versions
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
+        - name: itemId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: version
+          in: path
+          description: Unique version identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    put:
+      summary: 'Update a version of a campaign item'
+      description: ''
+      operationId: updateVersion
+      tags:
+        - versions
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
+        - name: itemId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: version
+          in: path
+          description: Unique version identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    delete:
+      summary: 'Delete a version of a campaign item'
+      description: ''
+      operationId: deleteVersion
+      tags:
+        - versions
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
+        - name: itemId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: version
+          in: path
+          description: Unique version identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+
 
 components:
   requestBodies:
