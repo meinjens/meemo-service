@@ -23,10 +23,9 @@ public class SwaggerConfiguration {
                         .title("Meemo Service API")
                         .version("0.1.0")
                         .build())
-                .genericModelSubstitutes(Mono.class, Flux.class)
                 .ignoredParameterTypes(ServerWebExchange.class)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("meemo.campaign.service"))
+                .apis(RequestHandlerSelectors.basePackage("meemo"))
                 .paths(PathSelectors.any())
                 .build();
     }
