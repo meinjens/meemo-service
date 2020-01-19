@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.4.RELEASE</version>
+		<version>2.2.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>meemo</groupId>
 	<artifactId>meemo-service</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<name>meemo-service</name>
 	<description>Provide services for campaigns</description>
 
@@ -24,8 +24,10 @@
 		<json-schema-validator.version>3.3.0</json-schema-validator.version>
 		<swagger-annotations.version>1.5.22</swagger-annotations.version>
 		<springfox.version>3.0.0-SNAPSHOT</springfox.version>
+		<rest-assured.version>4.1.2</rest-assured.version>
+		<assertj.version>3.14.0</assertj.version>
 
-		<maven-openapi-generator-plugin.version>4.1.1</maven-openapi-generator-plugin.version>
+		<maven-openapi-generator-plugin.version>4.2.2</maven-openapi-generator-plugin.version>
 		<maven-dockerfile-plugin.version>1.4.9</maven-dockerfile-plugin.version>
 		<maven-sonar-plugin.version>3.3.0.603</maven-sonar-plugin.version>
 		<maven-jacoco-plugin.version>0.8.4</maven-jacoco-plugin.version>

@@ -19,8 +19,80 @@ paths:
     get:
       summary: 'Get list of campaigns'
       description: ''
-      parameters: []
+      parameters:
+        - name: limit
+          in: query
+          description: Limit number of records returning
+          required: false
+          schema:
+            type: integer
+            format: int32
       operationId: getCampaigns
+      tags:
+        - campaign
+      responses:
+        default:
+          $ref: '#/components/responses/CampaignGetResponse'
+    post:
+      summary: 'Create campaign'
+      description: ''
+      operationId: createCampaign
+      tags:
+        - campaign
+      requestBody:
+        description: Campaign to create
+        $ref: '#/components/requestBodies/CampaignCreateRequest'
+      responses:
+        '201':
+          description: Campaign created (null response).
+        default:
+          description: Unexpected error
+          $ref: '#/components/responses/ErrorResponse'
+
+  /campaigns/{campaignId}:
+    get:
+      summary: 'Get campaign details'
+      description: ''
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
+      operationId: getCampaign
+      tags:
+        - campaign
+      responses:
+        default:
+          $ref: '#/components/responses/CampaignGetResponse'
+    put:
+      summary: 'Update campaign details'
+      description: ''
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
+      operationId: updateCampaign
+      tags:
+        - campaign
+      responses:
+        default:
+          $ref: '#/components/responses/CampaignGetResponse'
+    delete:
+      summary: 'Delete campaign details'
+      description: ''
+      parameters:
+        - name: campaignId
+          in: path
+          description: Unique campaign identifier
+          required: true
+          schema:
+            type: string
+      operationId: removeCampaign
       tags:
         - campaign
       responses:
@@ -28,6 +100,14 @@ paths:
           $ref: '#/components/responses/CampaignGetResponse'
 
 components:
+  requestBodies:
+    CampaignCreateRequest:
+      description: OK
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Campaign'
   responses:
     CampaignGetResponse:
       description: OK
@@ -37,6 +117,21 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Campaign'
+    CampaignListResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Campaign'
+    ErrorResponse:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
   schemas:
     Error:
       type: object

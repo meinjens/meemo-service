@@ -2,6 +2,9 @@ package meemo.campaign.service.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -20,6 +23,8 @@ public class SwaggerConfiguration {
                         .title("Meemo Service API")
                         .version("0.1.0")
                         .build())
+                .genericModelSubstitutes(Mono.class, Flux.class)
+                .ignoredParameterTypes(ServerWebExchange.class)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("meemo.campaign.service"))
                 .paths(PathSelectors.any())

@@ -17,11 +17,4 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class CampaignsApiController implements CampaignApi {
 
-    @Autowired
-    private FetchCampaign fetchCampaign;
-
-    @Override
-    public Mono<ResponseEntity<Flux<Campaign>>> getCampaigns(ServerWebExchange exchange) {
-        return Mono.just(ResponseEntity.ok().body(Flux.just(new Campaign())));
-    }
 }
