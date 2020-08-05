@@ -1,5 +1,4 @@
 language: java
-jdk: openjdk11
 dist: xenial
 sudo: required
 
@@ -32,8 +31,7 @@ cache:
     - '$HOME/.sonar/cache'
 
 script:
-  - ./gradlew build
-  - ./gradlew sonarqube
+  - ./gradlew build sonarqube
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS

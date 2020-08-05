@@ -60,6 +60,7 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	finalizedBy("jacocoTestReport")
 }
 
 tasks.withType<KotlinCompile> {
@@ -70,9 +71,13 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
+
 tasks.withType<JacocoReport> {
+	dependsOn(tasks.test)
 	reports {
 		xml.isEnabled = true
+		csv.isEnabled = false
+		html.destination = file("${buildDir}/jacocoHtml")
 	}
 }
 
