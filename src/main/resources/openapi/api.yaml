@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: '3.0.1'
 servers:
-  - url: 'http://localhost:8080/v1'
+  - url: 'http://localhost:8080'
 info:
   title: Meemo Service API
   description: >-
@@ -11,8 +11,8 @@ info:
     email: mail@jensmeinecke.de
     url: https://jensmeinecke.de
   license:
-    name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    name: GPLv3
+    url: 'https://www.gnu.org/licenses/gpl-3.0.txt'
 tags:
   - name: campaigns
     description: Operations about campaign
@@ -42,18 +42,16 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
     post:
       summary: 'Create campaign'
-      description: ''
+      description: 'Create campaign'
       operationId: createCampaign
       tags:
         - campaigns
       requestBody:
-        description: Campaign to create
         $ref: '#/components/requestBodies/CampaignCreateRequest'
       responses:
         '201':
           description: Campaign created (null response).
         default:
-          description: Unexpected error
           $ref: '#/components/responses/ErrorResponse'
   /campaigns/{campaignId}:
     get:
@@ -187,15 +185,13 @@ paths:
           schema:
             type: string
       requestBody:
-        description: Item to create
         $ref: '#/components/requestBodies/ItemCreateRequest'
       responses:
         '201':
           description: Campaign item created (null response).
         default:
-          description: Unexpected error
           $ref: '#/components/responses/ErrorResponse'
-  /campaigns/{campaignId}/items/{itemId}:
+  /items/{itemId}:
     get:
       summary: 'Get campaign item details'
       description: ''
@@ -270,7 +266,7 @@ paths:
         default:
           $ref: '#/components/responses/ErrorResponse'
 
-  /campaigns/{campaignId}/items/{itemId}/versions:
+  /items/{itemId}/versions:
     get:
       summary: 'Get all versions of a campaign item'
       description: ''
@@ -315,15 +311,13 @@ paths:
             type: integer
             format: int32
       requestBody:
-        description: Item to create
         $ref: '#/components/requestBodies/VersionCreateRequest'
       responses:
         '201':
           description: Campaign item version created (null response).
         default:
-          description: Unexpected error
           $ref: '#/components/responses/ErrorResponse'
-  /campaigns/{campaignId}/items/{itemId}/versions/{version}:
+  /versions/{version}:
     get:
       summary: 'Get a version of a campaign item'
       description: ''

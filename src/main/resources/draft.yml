@@ -1,0 +1,36 @@
+
+- name: votings
+  description: Operations about votings of versions
+- name: feedback
+  description: Operations about feedbacks of votings
+
+
+  /campaigns/{campaignId}/items/{itemId}/versions/{version}/vote
+post:
+
+/campaigns/{campaignId}/items/{itemId}/versions/{version}/votings:
+  get:
+  post:
+
+/campaigns/{campaignId}/items/{itemId}/versions/{version}/votings/{votingId}:
+  get:
+  put:
+  delete:
+
+/campaigns/{campaignId}/items/{itemId}/versions/{version}/votings/{votingId}/finish:
+  post:
+
+/campaigns/{campaignId}/items/{itemId}/versions/{version}/votings/{votingId}/reset:
+  post:
+
+/campaigns/{campaignId}/items/{itemId}/versions/{version}/votings/{votingId}/notify:
+  post:
+
+/campaigns/{campaignId}/items/{itemId}/versions/{version}/votings/{votingId}/feedbacks:
+  get:
+  post:
+
+/campaigns/{campaignId}/items/{itemId}/versions/{version}/votings/{votingId}/feedbacks/{feedbackId}:
+  get:
+  put:
+  delete:
