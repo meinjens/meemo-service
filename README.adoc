@@ -1,5 +1,6 @@
 = Meemo Service
 
-image::https://sonarcloud.io/api/project_badges/measure?project=meinjens_meemo-service&metric=alert_status[caption="Quality Gate Status",link=https://sonarcloud.io/dashboard?id=meinjens_meemo-service]
+image::https://sonarcloud.io/api/project_badges/measure?project=meemo%3Ameemo-service&metric=alert_status[caption="Quality Gate Status",link=https://sonarcloud.io/dashboard?id=meemo%3Ameemo-service]
+image::https://travis-ci.org/meinjens/meemo-service.svg?branch=master
 
 Some kind of software - you will see
