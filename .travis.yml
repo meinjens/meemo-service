@@ -31,8 +31,7 @@ cache:
     - '$HOME/.sonar/cache'
 
 script:
-  - ./gradlew build
-  - sonar-scanner
+  - ./gradlew build sonarqube -Dsonar.login=$SONARCLOUD_TOKEN
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS

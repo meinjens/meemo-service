@@ -81,6 +81,12 @@ tasks.withType<JacocoReport> {
 	}
 }
 
+sonarqube {
+	properties {
+		property("sonar.host.url", "https://sonarcloud.io")
+	}
+}
+
 springBoot {
 	buildInfo()
 	mainClassName = "meemo.MeemoServiceApplicationKt"
