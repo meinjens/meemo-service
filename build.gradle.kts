@@ -44,6 +44,11 @@ dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-consul-config")
 	implementation("org.springframework.cloud:spring-cloud-starter-consul-discovery")
 
+	// Metrics
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("io.micrometer:micrometer-registry-prometheus")
+
+	// Documentation
 	implementation("org.springdoc:springdoc-openapi-webflux-core:$springdocVersion")
 	implementation("org.springdoc:springdoc-openapi-webflux-ui:$springdocVersion")
 	implementation("org.springdoc:springdoc-openapi-kotlin:$springdocVersion")
