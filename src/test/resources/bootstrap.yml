@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: campaignservice
+  cloud:
+    consul:
+      enabled: false
+      config:
+        enabled: false

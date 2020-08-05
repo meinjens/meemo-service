@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: campaignservice
+  cloud:
+    consul:
+      host: agent
+      enabled: false
+      config:
+        enabled: false
+        format: YAML
