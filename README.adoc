@@ -1,4 +1,5 @@
-Meemo Service
-=============
+= Meemo Service
+
+image::https://sonarcloud.io/api/project_badges/measure?project=meinjens_meemo-service&metric=alert_status[caption="Quality Gate Status",link=https://sonarcloud.io/dashboard?id=meinjens_meemo-service]
 
 Some kind of software - you will see

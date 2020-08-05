@@ -15,6 +15,7 @@ plugins {
 	kotlin("plugin.serialization") version "1.3.72"
 
 	idea
+	jacoco
 }
 
 group = "meemo"
@@ -69,6 +70,12 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
+tasks.withType<JacocoReport> {
+	reports {
+		xml.isEnabled = true
+	}
+}
+
 springBoot {
 	buildInfo()
 	mainClassName = "meemo.MeemoServiceApplicationKt"
@@ -109,4 +116,3 @@ idea {
 		generatedSourceDirs.add(file("$buildDir/generated/openapi/src/main/kotlin"))
 	}
 }
-
