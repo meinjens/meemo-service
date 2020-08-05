@@ -8,6 +8,7 @@ plugins {
 	id("org.springframework.boot") version "2.3.2.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
 	id("org.openapi.generator") version "4.2.3"
+	id("org.sonarqube") version "3.0"
 
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"

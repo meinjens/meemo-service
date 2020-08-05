@@ -32,6 +32,7 @@ cache:
 
 script:
   - ./gradlew build
+  - ./gradlew sonarqube
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
