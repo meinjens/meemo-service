@@ -1,6 +1,6 @@
 spring:
   application:
-    name: campaignservice
+    name: meemoservice
   cloud:
     consul:
       host: agent
