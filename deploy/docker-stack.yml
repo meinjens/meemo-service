@@ -1,0 +1,33 @@
+version: '3.5'
+
+services:
+  service:
+    image: meinjens/meemo-service:${MEEMO_TAG}
+    networks:
+      - traefik_public
+      - consul_net
+      - mariadb_net
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik_public
+        - traefik.http.services.meemoservice.loadbalancer.server.port=8080
+        - traefik.http.routers.meemoservice.entryPoints=websecure
+        - traefik.http.routers.meemoservice.service=meemoservice
+        - traefik.http.routers.meemoservice.rule=Host(`${MEEMO_SERVICE_URL}`)
+        - traefik.http.middlewares.admin-auth.basicauth.users=${MEEMO_BASIC_AUTH}
+        - traefik.http.routers.meemoservice.middlewares=admin-auth
+        - traefik.http.routers.meemoservice.tls.certresolver=leresolver
+
+networks:
+  traefik_public:
+    external: true
+  consul_net:
+    external: true
+  mariadb_net:
+    external: true
