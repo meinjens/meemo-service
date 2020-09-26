@@ -1,9 +1,9 @@
 spring:
   application:
-    name: meemoservice
+    name: meemo-service
   cloud:
     consul:
-      host: agent
+      host: consul_agent
       enabled: true
       config:
         enabled: true

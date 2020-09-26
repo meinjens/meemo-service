@@ -13,6 +13,8 @@ plugins {
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
 	kotlin("plugin.serialization") version "1.3.72"
+	kotlin("plugin.jpa") version "1.3.72"
+	kotlin("plugin.allopen") version "1.3.72"
 
 	idea
 	jacoco
@@ -39,8 +41,15 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
+	// JPA
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	runtimeOnly("com.h2database:h2")
+
+	// Web
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
+
+	// Cloud
 	implementation("org.springframework.cloud:spring-cloud-starter-consul-config")
 	implementation("org.springframework.cloud:spring-cloud-starter-consul-discovery")
 
@@ -84,6 +93,12 @@ tasks.withType<JacocoReport> {
 		csv.isEnabled = false
 		html.destination = file("${buildDir}/jacocoHtml")
 	}
+}
+
+allOpen {
+	annotation("javax.persistence.Entity")
+	annotation("javax.persistence.Embeddable")
+	annotation("javax.persistence.MappedSuperclass")
 }
 
 sonarqube {
