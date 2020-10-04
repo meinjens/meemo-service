@@ -10,11 +10,11 @@ plugins {
 	id("org.openapi.generator") version "4.2.3"
 	id("org.sonarqube") version "3.0"
 
-	kotlin("jvm") version "1.3.72"
-	kotlin("plugin.spring") version "1.3.72"
-	kotlin("plugin.serialization") version "1.3.72"
-	kotlin("plugin.jpa") version "1.3.72"
-	kotlin("plugin.allopen") version "1.3.72"
+	kotlin("jvm") version "1.4.10"
+	kotlin("plugin.spring") version "1.4.10"
+	kotlin("plugin.serialization") version "1.4.10"
+	kotlin("plugin.jpa") version "1.4.10"
+	kotlin("plugin.allopen") version "1.4.10"
 
 	idea
 	jacoco
