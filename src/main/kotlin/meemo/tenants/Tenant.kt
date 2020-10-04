@@ -1,5 +1,6 @@
 package meemo.tenants
 
 class Tenant(
-  var name: String
+    var id: Long,
+    var name: String?
 )

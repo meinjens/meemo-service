@@ -1,4 +1,4 @@
-package meemo.campaigns
+package meemo.campaigns.entities
 
 enum class CampaignState {
     DRAFT,

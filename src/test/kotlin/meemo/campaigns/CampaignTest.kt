@@ -1,6 +1,6 @@
 package meemo.campaigns
 
-import meemo.campaigns.Campaign
+import meemo.campaigns.entities.Campaign
 import meemo.tenants.Tenant
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -8,13 +8,14 @@ import org.junit.jupiter.api.Test
 class CampaignTest {
 
     @Test
-    fun `testing`() {
+    fun `given Campaign when archive then Campaign should be archived`() {
         val campaign = Campaign(
+                Tenant(1, "test"),
                 "test",
-                Tenant("test"))
+                "test description")
 
         campaign.archive()
 
-        assertThat(campaign.archived).isTrue()
+        assertThat(campaign.archived).isTrue
     }
 }

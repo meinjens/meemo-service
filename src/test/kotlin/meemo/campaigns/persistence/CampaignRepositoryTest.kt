@@ -1,12 +1,14 @@
 package meemo.campaigns.persistence
 
-import meemo.campaigns.CampaignState
+import meemo.campaigns.entities.CampaignState
+import meemo.campaigns.persistence.model.CampaignPersistenceEntity
+import meemo.campaigns.persistence.repository.CampaignRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 @DataJpaTest
 class CampaignRepositoryTest @Autowired constructor(
@@ -15,10 +17,12 @@ class CampaignRepositoryTest @Autowired constructor(
 
     @Test
     fun `When findByName then return Campaign`() {
-        val campaignEntity = CampaignEntity("test",
+        val campaignEntity = CampaignPersistenceEntity(
+                1,
+                "test",
                 "sample campaign",
-                LocalDate.now(),
-                LocalDate.now(),
+                LocalDateTime.now(),
+                LocalDateTime.now(),
                 CampaignState.DRAFT
         )
         entityManager.persist(campaignEntity)

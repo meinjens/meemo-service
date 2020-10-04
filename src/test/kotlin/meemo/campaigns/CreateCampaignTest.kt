@@ -9,6 +9,6 @@ class CreateCampaignTest {
     fun `given name when create campaign then return created campaign`() {
         val campaign = CreateCampaign()
 
-        assertThat(campaign.
+        assertThat(campaign).isNotNull
     }
 }
