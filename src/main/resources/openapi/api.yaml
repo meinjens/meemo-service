@@ -24,7 +24,7 @@ tags:
 paths:
   /campaigns:
     get:
-      summary: 'Get list of campaigns'
+      summary: 'Find campaigns'
       description: ''
       operationId: findCampaigns
       tags:
@@ -39,7 +39,7 @@ paths:
             format: int32
       responses:
         '200':
-          $ref: '#/components/responses/CampaignListResponse'
+          $ref: '#/components/responses/ListCampaignsResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
     post:
@@ -49,17 +49,17 @@ paths:
       tags:
         - campaigns
       requestBody:
-        $ref: '#/components/requestBodies/CampaignCreateBody'
+        $ref: '#/components/requestBodies/CreateCampaignRequest'
       responses:
         '201':
-          description: Campaign created (null response).
+          $ref: '#/components/responses/DetailCampaignResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /campaigns/{campaignId}:
     get:
       summary: 'Get campaign details'
       description: ''
-      operationId: getCampaign
+      operationId: readCampaign
       tags:
         - campaigns
       parameters:
@@ -70,8 +70,10 @@ paths:
           schema:
             type: string
       responses:
+        '200':
+          $ref: '#/components/responses/DetailCampaignResponse'
         default:
-          $ref: '#/components/responses/CampaignDetailResponse'
+          $ref: '#/components/responses/ErrorResponse'
     put:
       summary: 'Update campaign details'
       description: ''
@@ -85,13 +87,17 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateCampaignRequest'
       responses:
+        '200':
+          $ref: '#/components/responses/DetailCampaignResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
     delete:
       summary: 'Delete campaign'
       description: ''
-      operationId: removeCampaign
+      operationId: deleteCampaign
       tags:
         - campaigns
       parameters:
@@ -102,6 +108,8 @@ paths:
           schema:
             type: string
       responses:
+        '200':
+          description: Campaign marked as deleted successfully
         default:
           $ref: '#/components/responses/ErrorResponse'
   /campaigns/{campaignId}/duplicate:
@@ -119,6 +127,8 @@ paths:
           schema:
             type: string
       responses:
+        '200':
+          $ref: '#/components/responses/DetailCampaignResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /campaigns/{campaignId}/archive:
@@ -136,6 +146,8 @@ paths:
           schema:
             type: string
       responses:
+        '200':
+          $ref: '#/components/responses/DetailCampaignResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /campaigns/{campaignId}/unarchive:
@@ -153,6 +165,8 @@ paths:
           schema:
             type: string
       responses:
+        '200':
+          $ref: '#/components/responses/DetailCampaignResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
 
@@ -187,7 +201,7 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: '#/components/requestBodies/ItemCreateRequest'
+        $ref: '#/components/requestBodies/CreateItemRequest'
       responses:
         '201':
           description: Campaign item created (null response).
@@ -313,7 +327,7 @@ paths:
             type: integer
             format: int32
       requestBody:
-        $ref: '#/components/requestBodies/VersionCreateRequest'
+        $ref: '#/components/requestBodies/CreateVersionRequest'
       responses:
         '201':
           description: Campaign item version created (null response).
@@ -414,52 +428,59 @@ paths:
 
 components:
   requestBodies:
-    CampaignCreateBody:
+    CreateCampaignRequest:
       description: Campaign to create
       required: true
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CampaignCreateRequest'
-    ItemCreateRequest:
+            $ref: '#/components/schemas/CampaignModel'
+    UpdateCampaignRequest:
+      description: Campaign to update
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CampaignModel'
+    CreateItemRequest:
       description: Create campaign item
       required: true
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Item'
-    VersionCreateRequest:
+            $ref: '#/components/schemas/ItemModel'
+    CreateVersionRequest:
       description: Create campaign item version
       required: true
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Version'
+            $ref: '#/components/schemas/VersionModel'
 
   responses:
-    CampaignListResponse:
+    ListCampaignsResponse:
       description: List of campaigns
       content:
         application/json:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/CampaignResponse'
-    CampaignDetailResponse:
+              $ref: '#/components/schemas/CampaignModel'
+    DetailCampaignResponse:
       description: Campaign details
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CampaignResponse'
+            $ref: '#/components/schemas/CampaignModel'
     ErrorResponse:
       description: Unexpected error
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorModel'
 
   schemas:
-    Error:
+    ErrorModel:
       type: object
       properties:
         code:
@@ -469,13 +490,7 @@ components:
       required:
         - code
         - message
-    CampaignCreateRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the campaign
-    CampaignResponse:
+    CampaignModel:
       type: object
       properties:
         id:
@@ -484,7 +499,7 @@ components:
         name:
           type: string
           description: Name of the campaign
-    Item:
+    ItemModel:
       type: object
       properties:
         id:
@@ -494,7 +509,7 @@ components:
         name:
           type: string
           description: Caption of the campaign item
-    Version:
+    VersionModel:
       type: object
       properties:
         id:
