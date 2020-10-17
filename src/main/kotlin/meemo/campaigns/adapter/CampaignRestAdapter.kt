@@ -6,17 +6,18 @@ import meemo.campaigns.entities.Campaign
 import meemo.service.api.CampaignsApiService
 import meemo.service.api.model.CampaignModel
 import meemo.tenants.Tenant
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class CampaignRestAdapter (val campaignService: CampaignService) : CampaignsApiService {
+class CampaignRestAdapter (
+        @Autowired val campaignService: CampaignService
+) : CampaignsApiService {
     override suspend fun archiveCampaign(campaignId: String): CampaignModel {
         TODO("Not yet implemented")
     }
 
     override suspend fun createCampaign(campaignModel: CampaignModel): CampaignModel {
-        TODO("Not yet implemented")
-
         // Get Request
 
         // Create Campaign
@@ -25,6 +26,7 @@ class CampaignRestAdapter (val campaignService: CampaignService) : CampaignsApiS
 
         // Render Response
         //return CreateCampaignResposnse
+        TODO("Not finished")
     }
 
     override suspend fun deleteCampaign(campaignId: String) {

@@ -1,13 +1,16 @@
 package meemo.campaigns
 
 import meemo.campaigns.entities.Campaign
-import meemo.campaigns.persistence.CampaignPersistenceGateway
+import meemo.config.Logging
+import meemo.config.logger
 import org.springframework.stereotype.Service
 
 @Service
-class CampaignInteractor(campaignPersistence: CampaignPersistenceGateway) : CampaignService{
+class CampaignInteractor : CampaignService, Logging {
 
     override fun findCampaigns(tenantId: Long): List<Campaign> {
+        logger().info("Geht doch")
+
         TODO("Not yet implemented")
     }
 

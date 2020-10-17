@@ -1,7 +1,11 @@
 spring:
   application:
-    name: campaignservice
+    name: meemo-service
   cloud:
+    bus:
+      enabled: false
+    discovery:
+      enabled: false
     consul:
       enabled: false
       config:

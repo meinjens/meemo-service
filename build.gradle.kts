@@ -13,7 +13,6 @@ plugins {
 	kotlin("jvm") version "1.4.10"
 	kotlin("plugin.spring") version "1.4.10"
 	kotlin("plugin.serialization") version "1.4.10"
-	kotlin("plugin.jpa") version "1.4.10"
 	kotlin("plugin.allopen") version "1.4.10"
 
 	idea
@@ -40,10 +39,12 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 
-	// JPA
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	runtimeOnly("com.h2database:h2")
+	// R2DBC
+	implementation("com.h2database:h2")
+	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+	implementation("org.mariadb:r2dbc-mariadb:0.8.4-rc")
 
 	// Web
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -62,6 +63,7 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-webflux-ui:$springdocVersion")
 	implementation("org.springdoc:springdoc-openapi-kotlin:$springdocVersion")
 
+	// Test & Dev
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {

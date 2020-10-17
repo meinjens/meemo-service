@@ -3,14 +3,9 @@ package meemo.campaigns.persistence.model
 import meemo.campaigns.entities.Campaign
 import meemo.campaigns.entities.CampaignState
 import meemo.tenants.Tenant
+import org.springframework.data.annotation.Id
 import java.time.LocalDateTime
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.Table
 
-@Entity
-@Table(name = "campaigns")
 data class CampaignPersistenceEntity(
         val tenantId: Long,
         val name: String,
@@ -18,7 +13,7 @@ data class CampaignPersistenceEntity(
         val updatedAt: LocalDateTime = LocalDateTime.now(),
         val createdAt: LocalDateTime = LocalDateTime.now(),
         val state: CampaignState,
-        @Id @GeneratedValue val id: Long? = null) {
+        @Id val id: Long? = null) {
 
     companion object {
         fun fromEntity(campaign: Campaign) = CampaignPersistenceEntity(
