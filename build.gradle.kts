@@ -5,7 +5,7 @@ val generatedSourcesDir = "$buildDir/generated/openapi"
 val springdocVersion = "1.4.3"
 
 plugins {
-	id("org.springframework.boot") version "2.3.2.RELEASE"
+	id("org.springframework.boot") version "2.3.5.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
 	id("org.openapi.generator") version "4.2.3"
 	id("org.sonarqube") version "3.0"
@@ -62,6 +62,9 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-webflux-core:$springdocVersion")
 	implementation("org.springdoc:springdoc-openapi-webflux-ui:$springdocVersion")
 	implementation("org.springdoc:springdoc-openapi-kotlin:$springdocVersion")
+
+	// Security
+	implementation("org.springframework.boot:spring-boot-starter-security")
 
 	// Test & Dev
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -128,6 +131,7 @@ openApiGenerate {
 
 	configOptions.set(mapOf(
 			"dateLibrary" to "java8",
+			"enumPropertyNaming" to "original",
 			"reactive" to "true",
 			"beanValidations" to "true",
 			"serviceInterface" to "true",
