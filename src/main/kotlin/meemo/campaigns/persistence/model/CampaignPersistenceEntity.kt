@@ -26,7 +26,7 @@ data class CampaignPersistenceEntity(
     }
 
     fun toEntity(): Campaign {
-        return Campaign(Tenant(tenantId, "unknown"),name, description)
+        return Campaign(Tenant(tenantId, "unknown"),name)
     }
 }
 

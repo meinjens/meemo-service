@@ -108,7 +108,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
           description: Campaign marked as deleted successfully
         default:
           $ref: '#/components/responses/ErrorResponse'

@@ -3,3 +3,14 @@
 image:https://travis-ci.org/meinjens/meemo-service.svg?branch=master[caption="Build status"] image:https://sonarcloud.io/api/project_badges/measure?project=meemo%3Ameemo-service&metric=alert_status[caption="Quality Gate Status",link=https://sonarcloud.io/dashboard?id=meemo%3Ameemo-service]
 
 Some kind of software - you will see
+
+
+Tutorials
+
+https://www.youtube.com/watch?v=JX7nB61h3no&list=PL0Un1HNdB4jFCsHsQg2HOfO03XfECuMiw&index=2
+https://spring.io/guides/gs/accessing-data-r2dbc/
+https://devdojo.com/
+https://www.reactive-streams.org/
+https://www.baeldung.com/rxjava-vs-java-flow-api
+
+https://www.baeldung.com/kotlin-logging#2-pollution-of-the-any-type
